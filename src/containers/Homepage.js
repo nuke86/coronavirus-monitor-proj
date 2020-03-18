@@ -7,6 +7,15 @@ import TotalConfirmed from "../components/TotalConfirmed";
 import TotalDeaths from "../components/TotalDeaths";
 import TotalRecovered from "../components/TotalRecovered";
 import AlertDialogSlide from "../components/DialogBox";
+
+import Italy from '../components/Italy';
+import Region from '../components/Region';
+import Dropdownbs from '../components/Dropdownbs';
+import italia from '../img/italia.png';
+import 'font-awesome/css/font-awesome.css';
+import 'jquery';
+import 'popper.js';
+
 import classes from "./Homepage.module.css";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -35,6 +44,12 @@ class Homepage extends Component {
       });
   }
 
+  handlerClick(){
+    this.setState(prevState=>({
+      clicked: !prevState.clicked
+    }))
+  }
+
   checkDataForThisCountry = name => {
     const countryData = this.state.data.breakdown.filter(element => {
       return element.country === name;
@@ -47,6 +62,20 @@ class Homepage extends Component {
   };
 
   render() {
+    let situazioneItalia = (
+        <Italy />
+    );
+    let situazioneRegioni = (
+        <div>
+        <div className="container-fluid mt-5 mb-5 master-container">
+        <h3><img style={{display:'block', margin:'0 auto'}} alt='italia' className='img-fluid' src={italia} width='50px' align='left' /> Situazione regioni</h3>
+        <Region textDeceduti='Deceduti: ' 
+                  textTamponi='Tamponi: ' 
+                  textTotaliCasi='Casi totali: '
+                  textTerapia='Terapia Intensiva: '
+                  />
+        </div></div>
+    );
     let confirmedCasesByCountry = (
       <Grid
         container
@@ -109,7 +138,7 @@ class Homepage extends Component {
 
       confirmedCasesByCountry = [...this.state.data.breakdown];
       confirmedCasesByCountry = confirmedCasesByCountry
-        .slice(0, 20)
+        .slice(0, 156)
         .map(country => {
           return (
             <TotalConfirmed
@@ -124,7 +153,7 @@ class Homepage extends Component {
       totalDeathsByCountrySorted = [...this.state.data.breakdown];
       totalDeathsByCountrySorted = totalDeathsByCountrySorted
         .sort((a, b) => parseFloat(b.totalDeaths) - parseFloat(a.totalDeaths))
-        .slice(1, 30)
+        .slice(1, 156)
         .map(country => {
           return (
             <TotalDeaths
@@ -139,7 +168,7 @@ class Homepage extends Component {
         .sort(
           (a, b) => parseFloat(b.totalRecovered) - parseFloat(a.totalRecovered)
         )
-        .slice(1, 30)
+        .slice(1, 156)
         .map(country => {
           return (
             <TotalRecovered
@@ -253,7 +282,7 @@ class Homepage extends Component {
                     {totalDeathsByCountrySorted}
                   </ul>
                 </Paper>
-              </Grid>
+			</Grid>
 
               <Grid item>
                 <Paper
@@ -274,6 +303,30 @@ class Homepage extends Component {
                   </ul>
                 </Paper>
               </Grid>
+               <Grid item>	
+		        <Paper
+                  style={{ backgroundColor: "#330033" }}
+                  className={classes.PaperSummary}
+                  elevation={3}
+                >
+                  <ul
+                    style={{
+                      listStyleType: "none",
+                      margin: "auto",
+                      padding: "0",
+                      color: "white"
+                    }}
+                  >
+                    <h3>Situazione Italia </h3>
+                    {situazioneItalia}
+                    
+                    
+                  </ul>
+                </Paper>
+	           </Grid>
+            </Grid>
+
+
               <AlertDialogSlide
                 close={this.closeDialogBox}
                 test={this.state.show}
@@ -281,8 +334,9 @@ class Homepage extends Component {
               ></AlertDialogSlide>
             </Grid>
           </Grid>
-        </Grid>
-      </div>
+
+ {situazioneRegioni}
+     </div> 
     );
   }
 }

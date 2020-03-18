@@ -51,22 +51,22 @@ export default function AlertDialogSlide(props) {
 
             <br></br>
             <span>
-              <strong>Numero dei nuovi decessi:</strong>
+              <strong>Numero dei nuovi decessi: </strong>
               {props.data.newDeaths}
             </span>
             <br></br>
             <span>
-              <strong>Totale ospedalizzati:</strong>
+              <strong>Totale ospedalizzati: </strong>
               {props.data.totalRecovered}
             </span>
             <br></br>
             <span>
-              <strong>Casi attivi:</strong>
+              <strong>Casi attivi: </strong>
               {props.data.activeCases}
             </span>
             <br></br>
             <span>
-              <strong>Casi con aggravamenti:</strong>
+              <strong>Casi con complicazioni: </strong>
               {props.data.seriousCases}
             </span>
           </DialogContentText>

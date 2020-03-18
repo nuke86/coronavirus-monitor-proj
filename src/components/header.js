@@ -9,7 +9,7 @@ const header = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="title" color="inherit">
-            Coronavirus - COVID-19 - Monitor live situazione
+            Coronavirus (COVID-19) Monitor situazione in tempo reale
           </Typography>
         </Toolbar>
       </AppBar>
