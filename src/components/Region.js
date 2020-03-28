@@ -77,15 +77,15 @@ export default class Region extends React.Component {
                               </h5>
                             </div>
 
-                            <div id={"collapse" + index} className="collapse show" aria-labelledby={'heading' + index} data-parent="#accordion">
+                            <div id={"collapse" + index} className="collapse" aria-labelledby={'heading' + index} data-parent="#accordion">
                               <div className="card-body">
                                 <p style={{color:'rgb(131, 131, 131)'}} className='region-data'>Aggiornati al {dataSlice((String(item.data).split('-').reverse().join('')))} </p>
                                     
                                     <ul className='region-ul'>
                                         <li><i className="fa fa-users"></i>{this.props.textTotaliCasi} {item["totale casi"]}</li>
-                                        <li><i className="fa fa-microscope">&nbsp;</i>{this.props.textTamponi} {item.tamponi}</li>
-                                        <li><i className="fa fa-procedures">&nbsp;</i>{this.props.textTerapia}{item["terapia intensiva"]}</li>
-                                        <li> <i className="fa fa-cross">&nbsp;</i> {this.props.textDeceduti} {item.deceduti}</li>
+                                        <li><i className="fa fa-microscope"></i>{this.props.textTamponi} {item.tamponi}</li>
+                                        <li><i className="fa fa-procedures"></i>{this.props.textTerapia} {item["terapia intensiva"]}</li>
+                                        <li><i className="fa fa-cross"></i>{this.props.textDeceduti} {item.deceduti}</li>
                                     </ul>
                               </div>
                             </div>

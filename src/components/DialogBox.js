@@ -56,7 +56,7 @@ export default function AlertDialogSlide(props) {
             </span>
             <br></br>
             <span>
-              <strong>Totale ospedalizzati: </strong>
+              <strong>Totale guariti: </strong>
               {props.data.totalRecovered}
             </span>
             <br></br>

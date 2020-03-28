@@ -1,5 +1,10 @@
 import React from "react";
 
+const numberFormat = (value) =>
+  new Intl.NumberFormat('it-IT', {
+    style: 'decimal',
+  }).format(value);
+  
 const Summary = props => {
   return (
     <div>
@@ -7,19 +12,19 @@ const Summary = props => {
       <p>
         Totale accertati:{" "}
         <span style={{ fontSize: "30px", color: "red" }}>
-          {props.summary.cases}
+          {numberFormat(props.summary.cases)}
         </span>
       </p>
       <p>
         Totale decessi:{" "}
         <span style={{ fontSize: "30px"}}>
-          {props.summary.deaths}
+          {numberFormat(props.summary.deaths)}
         </span>
       </p>
       <p>
-        Totale ospedalizzati:{" "}
+        Totale guariti:{" "}
         <span style={{ fontSize: "30px",  color: "#80ff00"  }}>
-          {props.summary.recovered}
+          {numberFormat(props.summary.recovered)}
         </span>
       </p>
     </div>

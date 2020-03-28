@@ -1,5 +1,10 @@
 import React from "react";
 
+const numberFormat = (value) =>
+  new Intl.NumberFormat('it-IT', {
+    style: 'decimal',
+  }).format(value);
+  
 const TotalConfirmed = props => {
   return (
     <li
@@ -10,7 +15,7 @@ const TotalConfirmed = props => {
         padding: "5px"
       }}
     >
-      {props.name}: <span style={{ color: "red" }}>{props.totalCases}</span>
+      {props.name}: <span style={{ color: "red" }}>{numberFormat(props.totalCases)}</span>
     </li>
   );
 };

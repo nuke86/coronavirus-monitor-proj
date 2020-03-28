@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 
+const numberFormat = (value) =>
+  new Intl.NumberFormat('it-IT', {
+    style: 'decimal',
+  }).format(value);
+  
 export default class Italy extends React.Component {
     constructor(props){
         super(props);
@@ -43,29 +48,34 @@ export default class Italy extends React.Component {
         return(
             <div className="row dati-italia">
                 <h4 style={{width:'100%'}} className='text-center'>
-                    Dati aggiornati al {dataSlice((String(todayItalyShort).split('-').reverse().join('').replace(/\s/g,'')))}
-                </h4>   
-                <div className="col-lg-12" >Casi Totali: <span className="lista-italia"> {this.state.data.totale_casi} </span> Nuovi contagi: <span className={differenzaTotalecasi > 0 ? 'red': 'green'}> {differenzaTotalecasi} 
-                            {differenzaTotalecasi > 0 ? <i className="fas fa-arrow-up"> </i> : <i className="fas fa-arrow-down"> </i>}
+                    Dati aggiornati al {dataSlice((String(todayItalyShort).split('-').reverse().join('').replace(/T/g,'')))}
+                </h4> 
+				<ul style={{textAlign: "left"}}>	
+                <li>Casi Totali: <span className="lista-italia"> {numberFormat(this.state.data.totale_casi)} </span> <br />
+					Nuovi casi: <span className={differenzaTotalecasi > 0 ? 'red': 'green'}> {numberFormat(differenzaTotalecasi)} 
+				{differenzaTotalecasi > 0 ? <i style={{color: "yellow"}} className="fa fa-arrow-up"></i>:<i style={{color: "yellow"}} className="fa fa-arrow-down"></i>}
                          </span> 
                     
                     
-                </div><hr />
-                <div className="col-lg-12">Tamponi: <span className="lista-italia"> {this.state.data.tamponi} </span> Nuovi positivi: <span className={differenzaTamponi > 0 ? 'red': 'green'}> {differenzaTamponi}
-                            {differenzaTamponi > 0 ? <i className="fas fa-arrow-up"></i> : <i className="fas fa-arrow-down"></i>}
+                </li>
+                <li>Tamponi: <span className="lista-italia"> {numberFormat(this.state.data.tamponi)} </span> <br />
+					Tamponi oggi: <span className={differenzaTamponi > 0 ? 'red': 'green'}> {numberFormat(differenzaTamponi)}
+                            {differenzaTamponi > 0 ? <i style={{color: "yellow"}} className="fa fa-arrow-up"></i> : <i style={{color: "yellow"}} className="fa fa-arrow-down"></i>}
                         </span> 
                     
-                </div><hr />
-                <div className="col-lg-12">Terapia Intensiva: <span className="lista-italia"> {this.state.data.terapia_intensiva} </span> Nuovi ricoveri: <span className={differenzaTerapiaintensiva > 0 ? 'red': 'green'}> {differenzaTerapiaintensiva}
-                            {differenzaTerapiaintensiva > 0 ? <i className="fas fa-arrow-up"></i> : <i className="fas fa-arrow-down"></i>}
+                </li>
+                <li>Terapia Intensiva: <span className="lista-italia"> {numberFormat(this.state.data.terapia_intensiva)} </span> <br />
+					Nuovi ricoveri: <span className={differenzaTerapiaintensiva > 0 ? 'red': 'green'}> {numberFormat(differenzaTerapiaintensiva)}
+                            {differenzaTerapiaintensiva > 0 ? <i style={{color: "yellow"}} className="fa fa-arrow-up"></i> : <i style={{color: "yellow"}} className="fa fa-arrow-down"></i>}
                         </span> 
                     
-                </div><hr />
-                <div className="col-lg-12">Deceduti: <span className="lista-italia"> {this.state.data.deceduti} </span> Nuovi decessi: <span className={differenzaTerapiaintensiva > 0 ? 'red': 'green'}> {differenzaDeceduti}
-                            {differenzaDeceduti > 0 ? <i className="fas fa-arrow-up"></i> : <i className="fas fa-arrow-down"></i>}
+                </li>
+                <li>Deceduti: <span className="lista-italia"> {numberFormat(this.state.data.deceduti)} </span> <br />
+					Nuovi deceduti: <span className={differenzaTerapiaintensiva > 0 ? 'red': 'green'}> {numberFormat(differenzaDeceduti)}
+                            {differenzaDeceduti > 0 ? <i style={{color: "yellow"}} className="fa fa-arrow-up"></i> : <i style={{color: "yellow"}} className="fa fa-arrow-down"></i>}
                         </span>
                     
-                </div>
+                </li></ul>
             </div>
         )
     }
